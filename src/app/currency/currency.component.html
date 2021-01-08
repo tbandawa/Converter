@@ -27,7 +27,7 @@
       
         <button mat-raised-button color="primary" type="submit">Convert</button>
 
-        {{ output }}
+        {{output | currency:currencyType}}
 
     </form>
 
@@ -59,7 +59,7 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="output">
       <th mat-header-cell *matHeaderCellDef> output </th>
-      <td mat-cell *matCellDef="let item"> {{item.output}} </td>
+      <td mat-cell *matCellDef="let item"> {{output | currency:item.to}}</td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
