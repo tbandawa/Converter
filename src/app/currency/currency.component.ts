@@ -28,11 +28,15 @@ export class CurrencyComponent implements OnInit {
 
         this.rate = data
 
+        this.rate.rates[data.base] = 1
+
         for (var key in data.rates) {
           if (data.rates.hasOwnProperty(key)) {
               this.currencies.push({type: key, rate: data.rates[key]})
           }
         }
+
+        console.log(data.rates)
 
       },
       error: error => {
