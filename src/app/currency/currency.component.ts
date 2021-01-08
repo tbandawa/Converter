@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { Currency, Rate, RateService } from '../core'
+import { Currency, Rate, History, RateService } from '../core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-currency',
@@ -11,8 +13,14 @@ export class CurrencyComponent implements OnInit {
 
   convertForm: FormGroup
   currencies: Currency[] = []
+  history: History[] = []
   output: number
   rate: Rate
+
+  displayedColumns: string[] = ['value', 'from', 'to', 'output']
+
+
+  dataSource = new MatTableDataSource<History>([]);
 
   constructor(private rateService: RateService, private formBuilder: FormBuilder) { 
     this.rateService.getRates().subscribe({
@@ -55,6 +63,10 @@ export class CurrencyComponent implements OnInit {
     var valueToConvert = this.convertForm.value.inputValue
 
     this.output = this.convertRates(this.rate.rates[fromCurrency], this.rate.rates[toCurrency], valueToConvert)
+
+    this.history.push({value: valueToConvert, from: fromCurrency, to: toCurrency, output: this.output})
+    this.dataSource.data = this.history
+
   }
 
 }
