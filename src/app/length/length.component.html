@@ -1,1 +1,39 @@
-<p>length works!</p>
+<div class="example-container">
+
+    <div class="example-container">
+
+        <form [formGroup]="convertForm">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Input Value</mat-label>
+                <input matInput #input maxlength="10" formControlName="inputValue" value="{{ inputValue }}" (change)="inputChange()">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Select Input Unit</mat-label>
+                <mat-select formControlName="fromUnit" (selectionChange)="onSelection()">
+                    <mat-option *ngFor="let length of lengths" [value]="length.unit">
+                        {{ length.unit }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field appearance="fill">
+                  <mat-label>Output Value</mat-label>
+                  <input matInput #input maxlength="10" formControlName="outputValue" value="{{ outputValue }}" (change)="outputChange()">
+             </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Select Ouput Unit</mat-label>
+                <mat-select formControlName="toUnit" (selectionChange)="onSelection()">
+                    <mat-option *ngFor="let length of lengths" [value]="length.unit">
+                        {{ length.unit }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </form>
+
+  </div>

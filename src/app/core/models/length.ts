@@ -1,4 +1,4 @@
 export interface Length {
-    mm: number;
+    value: number;
     unit: string;
   }
