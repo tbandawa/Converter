@@ -16,6 +16,7 @@ export class LengthComponent implements OnInit {
   ];
 
   convertForm: FormGroup
+  addForm: FormGroup
   outputFormValue: number
   inputFormValue: number
 
@@ -27,6 +28,10 @@ export class LengthComponent implements OnInit {
       outputValue: [null, Validators.required],
       fromUnit: [null, Validators.required],
       toUnit: [null, Validators.required]
+    });
+    this.addForm = this.formBuilder.group({
+      mmValue: [null, Validators.required],
+      unitValue: [null, Validators.required]
     });
   }
 
@@ -64,6 +69,15 @@ export class LengthComponent implements OnInit {
 
   convertLength(inUnit: number, outUnit: number, value: number) : number {
     return ((value/inUnit)*outUnit)
+  }
+
+  submit() {
+    if (!this.addForm.valid) {
+      return;
+    }
+    var mm = this.addForm.value.mmValue
+    var unit = this.addForm.value.unitValue
+    this.lengths.push({value: mm, unit: unit})
   }
 
 }

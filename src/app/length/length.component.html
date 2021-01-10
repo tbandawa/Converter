@@ -36,4 +36,20 @@
 
         </form>
 
+        <form class="example-form" [formGroup]="addForm" (submit)="submit()">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Millimeter Eqeuvalence</mat-label>
+                <input matInput #input maxlength="10" formControlName="mmValue">
+            </mat-form-field>
+          
+            <mat-form-field appearance="fill">
+                <mat-label>Unit Value</mat-label>
+                <input matInput #input maxlength="10" formControlName="unitValue">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Add</button>
+
+          </form>
+
   </div>
