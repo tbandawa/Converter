@@ -16,8 +16,8 @@ export class LengthComponent implements OnInit {
   ];
 
   convertForm: FormGroup
-  outputValue: number
-  inputValue: number
+  outputFormValue: number
+  inputFormValue: number
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -30,9 +30,12 @@ export class LengthComponent implements OnInit {
     });
   }
 
-  onSelection(){
-    this.inputChange()
+  onInputSelection(){
     this.outputChange()
+  }
+
+  onOutputSelection() {
+    this.inputChange()
   }
 
   inputChange() {
@@ -43,7 +46,7 @@ export class LengthComponent implements OnInit {
       var inputUnit = this.lengths.filter(l => l.unit === fromUnit)
       var outputUnit = this.lengths.filter(l => l.unit === toUnit)
       var output = this.convertLength(inputUnit[0].value, outputUnit[0].value, inputValue)
-      this.outputValue = output
+      this.outputFormValue = output
     }
   }
 
@@ -55,7 +58,7 @@ export class LengthComponent implements OnInit {
       var inputUnit = this.lengths.filter(l => l.unit === fromUnit)
       var outputUnit = this.lengths.filter(l => l.unit === toUnit)
       var input = this.convertLength(outputUnit[0].value, inputUnit[0].value, outputValue)
-      this.inputValue = input
+      this.inputFormValue = input
     }
   }
 
