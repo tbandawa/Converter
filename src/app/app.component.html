@@ -1,1 +1,11 @@
+<div class="d-flex justify-content-center mt-3">
+  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="page">
+    <label ngbButtonLabel class="btn-primary">
+      <input ngbButton type="radio" [value]="1" (change)="handleChange()"> Currency
+    </label>
+    <label ngbButtonLabel class="btn-primary">
+      <input ngbButton type="radio" [value]="false" (change)="handleChange()"> Length
+    </label>
+  </div>
+</div>
 <router-outlet></router-outlet>
