@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center mt-3">
+<div class="d-flex justify-content-center m-3">
   <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="page">
     <label ngbButtonLabel class="btn-primary">
       <input ngbButton type="radio" [value]="1" (change)="handleChange()"> Currency
@@ -8,4 +8,6 @@
     </label>
   </div>
 </div>
-<router-outlet></router-outlet>
+<div class="container-sm">
+  <router-outlet></router-outlet>
+</div>
