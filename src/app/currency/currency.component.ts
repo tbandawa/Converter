@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Currency, Rate, History, RateService } from '../core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import {MatTableDataSource} from '@angular/material/table'
 
 @Component({
   selector: 'app-currency',
