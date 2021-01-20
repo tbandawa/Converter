@@ -9,6 +9,7 @@ import { Currency, Rate, RateService } from '../core'
 export class CurrencyComponent  {
 
   currencies: Currency[] = []
+  error: string
   rate: Rate
 
   selectCurrencyOne: string
@@ -27,8 +28,8 @@ export class CurrencyComponent  {
           }
         }
       },
-      error: error => {
-        console.log(error)
+      error: () => {
+        this.error = "Could not fetch updated exchange rates.\nRefresh this page."
       }
     })
   }
