@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Currency, Rate, RateService } from '../core'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-currency',
   templateUrl: './currency.component.html',
   styleUrls: ['./currency.component.css']
 })
-export class CurrencyComponent implements OnInit {
+export class CurrencyComponent  {
 
   currencies: Currency[] = []
-  convertForm: FormGroup
   currencyType: string
   output: number
   rate: Rate
 
-  constructor(private rateService: RateService, private formBuilder: FormBuilder) { 
+  selectCurrencyOne: string
+  inputCurrencyOne: number
+  selectCurrencyTwo: string
+  inputCurrencyTwo: number
+
+
+  constructor(private rateService: RateService) { 
     this.rateService.getRates().subscribe({
       next: data => {
 
@@ -36,19 +40,27 @@ export class CurrencyComponent implements OnInit {
     })
   }
 
+  onCurrencyOneSelection(value: string) {
+      console.log(value)
+  }
+
+  onCurrencyTwoSelection(value: string) {
+    console.log(value)
+  }
+
+  onCurrencyOneInput() {
+    console.log(this.inputCurrencyOne)
+  }
+
+onCurrencyTwoInput() {
+  console.log(this.inputCurrencyTwo)
+}
+
   convertRates(inRate: number, outRate: number, value: number) : number {
     return ((value/inRate)*outRate)
   }
 
-  ngOnInit() {
-    this.convertForm = this.formBuilder.group({
-      inputValue: [null, Validators.required],
-      fromCurrency: [null, Validators.required],
-      toCurrency: [null, Validators.required]
-    });
-  }
-
-  submit() {
+  /*submit() {
     if (!this.convertForm.valid) {
       return;
     }
@@ -57,6 +69,6 @@ export class CurrencyComponent implements OnInit {
     this.currencyType = toCurrency
     var valueToConvert = this.convertForm.value.inputValue
     this.output = this.convertRates(this.rate.rates[fromCurrency], this.rate.rates[toCurrency], valueToConvert)
-  }
+  }*/
 
 }
