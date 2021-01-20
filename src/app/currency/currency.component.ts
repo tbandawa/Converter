@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Currency, Rate, History, RateService } from '../core'
+import { Currency, Rate, RateService } from '../core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
@@ -12,7 +12,6 @@ export class CurrencyComponent implements OnInit {
   currencies: Currency[] = []
   convertForm: FormGroup
   currencyType: string
-  history: History[] = []
   output: number
   rate: Rate
 
@@ -61,8 +60,6 @@ export class CurrencyComponent implements OnInit {
     this.currencyType = toCurrency
     var valueToConvert = this.convertForm.value.inputValue
     this.output = this.convertRates(this.rate.rates[fromCurrency], this.rate.rates[toCurrency], valueToConvert)
-    this.history.push({value: valueToConvert, from: fromCurrency, to: toCurrency, output: this.output})
-    //this.dataSource.data = this.history
   }
 
 }
