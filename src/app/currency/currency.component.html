@@ -67,9 +67,7 @@
           <div class="form-row">
             <div class="form-group col-md-5">
               <select id="currencyInput" class="form-control">
-                <option>USD</option>
-                <option>ZW</option>
-                <option>GBR</option>
+                <option *ngFor="let currency of currencies" [ngValue]="currency.type">{{currency.type}}</option>
               </select>
             </div>
             <div class="form-group col-md-7">
@@ -80,9 +78,7 @@
           <div class="form-row mt-3">
             <div class="form-group col-md-5">
               <select id="currencyOutput" class="form-control">
-                <option>USD</option>
-                <option>ZW</option>
-                <option>GBR</option>
+                <option *ngFor="let currency of currencies" [ngValue]="currency.type">{{currency.type}}</option>
               </select>
             </div>
             <div class="form-group col-md-7">

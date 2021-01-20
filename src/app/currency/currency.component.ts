@@ -15,9 +15,6 @@ export class CurrencyComponent implements OnInit {
   output: number
   rate: Rate
 
-  //displayedColumns: string[] = ['value', 'from', 'to', 'output']
-  //dataSource = new MatTableDataSource<History>([]);
-
   constructor(private rateService: RateService, private formBuilder: FormBuilder) { 
     this.rateService.getRates().subscribe({
       next: data => {
