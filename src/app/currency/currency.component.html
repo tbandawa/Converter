@@ -1,120 +1,33 @@
-<!--<div class="example-container">
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
 
-    <form [formGroup]="convertForm" (submit)="submit()">
-
-        <mat-form-field appearance="fill">
-            <mat-label>Enter Value</mat-label>
-            <input matInput #input maxlength="10" formControlName="inputValue">
-        </mat-form-field>
-        
-        <mat-form-field appearance="fill">
-            <mat-label>Select Currency</mat-label>
-            <mat-select formControlName="fromCurrency">
-                <mat-option *ngFor="let currency of currencies" [value]="currency.type">
-                  {{currency.type}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-      
-        <mat-form-field appearance="fill">
-            <mat-label>Select Currency</mat-label>
-            <mat-select formControlName="toCurrency">
-                <mat-option *ngFor="let currency of currencies" [value]="currency.type">
-                    {{currency.type}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-      
-        <button mat-raised-button color="primary" type="submit">Convert</button>
-
-        {{output | currency:currencyType}}
-
-    </form>
-
-</div>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="value">
-      <th mat-header-cell *matHeaderCellDef> Input</th>
-      <td mat-cell *matCellDef="let item"> {{item.value}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="from">
-      <th mat-header-cell *matHeaderCellDef> from </th>
-      <td mat-cell *matCellDef="let item"> {{item.from}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="to">
-      <th mat-header-cell *matHeaderCellDef> to </th>
-      <td mat-cell *matCellDef="let item"> {{item.to}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="output">
-      <th mat-header-cell *matHeaderCellDef> output </th>
-      <td mat-cell *matCellDef="let item"> {{output | currency:item.to}}</td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>-->
-
-  <div class="d-flex justify-content-center">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <form>
-
-          <div class="form-row">
-            <div class="form-group col-md-5">
-              <select id="currencyInput" class="form-control">
-                <option>USD</option>
-                <option>ZW</option>
-                <option>GBR</option>
-              </select>
-            </div>
-            <div class="form-group col-md-7">
-              <input type="number" class="form-control" id="valueInput">
-            </div>
-          </div>
-    
-          <div class="form-row mt-3">
-            <div class="form-group col-md-5">
-              <select id="currencyOutput" class="form-control">
-                <option>USD</option>
-                <option>ZW</option>
-                <option>GBR</option>
-              </select>
-            </div>
-            <div class="form-group col-md-7">
-              <input type="number" class="form-control" id="valueOutput">
-            </div>
-          </div>
-    
-          <div class="form-row mt-3">
-            <button type="button" class="btn btn-outline-primary btn-block">Convert</button>
-          </div>
-    
-        </form>
-
-        <table class="table table-borderless mt-3">
-          <thead>
-            <tr>
-              <th scope="col">History<hr class="mb-0 pb-0"/></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-
+      <div *ngIf='error' class="alert alert-warning small p-1" role="alert">
+        {{error}}
       </div>
+
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <select class="form-control" name="selectCurrencyOne" [(ngModel)]="selectCurrencyOne" (change)="onCurrencyOneSelection()">
+              <option *ngFor="let currency of currencies" [ngValue]="currency.type">{{currency.type}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-7">
+            <input type="number" class="form-control" name="inputCurrencyOne" [(ngModel)]="inputCurrencyOne" (input)="onCurrencyOneInput()">
+          </div>
+        </div>
+        <div class="form-row mt-3">
+          <div class="form-group col-md-5">
+            <select class="form-control" name="selectCurrencyTwo" [(ngModel)]="selectCurrencyTwo" (change)="onCurrencyTwoSelection()">
+              <option *ngFor="let currency of currencies" [ngValue]="currency.type" [selected]="currency.type == 'USD' ? true : null">{{currency.type}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-7">
+            <input type="number" class="form-control" name="inputCurrencyTwo" [(ngModel)]="inputCurrencyTwo" (input)="onCurrencyTwoInput()">
+          </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>
