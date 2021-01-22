@@ -15,55 +15,44 @@ export class LengthComponent implements OnInit {
     {value: 0.03937008, unit: 'in'}
   ];
 
-  convertForm: FormGroup
   addForm: FormGroup
-  outputFormValue: number
-  inputFormValue: number
+  selectLengthOne: string
+  inputLengthOne: number
+  selectLengthTwo: string
+  inputLengthTwo: number
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.convertForm = this.formBuilder.group({
-      inputValue: [null, Validators.required],
-      outputValue: [null, Validators.required],
-      fromUnit: [null, Validators.required],
-      toUnit: [null, Validators.required]
-    });
     this.addForm = this.formBuilder.group({
       mmValue: [null, Validators.required],
       unitValue: [null, Validators.required]
     });
   }
 
-  onInputSelection(){
-    this.outputChange()
+  onLengthOneSelection() {
+    this.onLengthTwoInput()
   }
 
-  onOutputSelection() {
-    this.inputChange()
+  onLengthTwoSelection() {
+    this.onLengthOneInput()
   }
 
-  inputChange() {
-    var inputValue = this.convertForm.value.inputValue
-    var fromUnit = this.convertForm.value.fromUnit
-    var toUnit = this.convertForm.value.toUnit
-    if(inputValue != null && fromUnit != null && toUnit != null) {
-      var inputUnit = this.lengths.filter(l => l.unit === fromUnit)
-      var outputUnit = this.lengths.filter(l => l.unit === toUnit)
-      var output = this.convertLength(inputUnit[0].value, outputUnit[0].value, inputValue)
-      this.outputFormValue = output
+  onLengthOneInput() {
+    if(this.inputLengthOne != null && this.selectLengthOne != null && this.selectLengthTwo != null) {
+      var unitOne = this.lengths.filter(l => l.unit === this.selectLengthOne)
+      var unitTwo = this.lengths.filter(l => l.unit === this.selectLengthTwo)
+      var output = this.convertLength(unitOne[0].value, unitTwo[0].value, this.inputLengthOne)
+      this.inputLengthTwo = output
     }
   }
 
-  outputChange() {
-    var outputValue = this.convertForm.value.outputValue
-    var fromUnit = this.convertForm.value.fromUnit
-    var toUnit = this.convertForm.value.toUnit
-    if(outputValue != null && fromUnit != null && toUnit != null) {
-      var inputUnit = this.lengths.filter(l => l.unit === fromUnit)
-      var outputUnit = this.lengths.filter(l => l.unit === toUnit)
-      var input = this.convertLength(outputUnit[0].value, inputUnit[0].value, outputValue)
-      this.inputFormValue = input
+  onLengthTwoInput() {
+   if(this.inputLengthTwo != null && this.selectLengthOne != null && this.selectLengthTwo != null) {
+      var unitOne = this.lengths.filter(l => l.unit === this.selectLengthOne)
+      var unitTwo = this.lengths.filter(l => l.unit === this.selectLengthTwo)
+      var input = this.convertLength(unitTwo[0].value, unitOne[0].value, this.inputLengthTwo)
+      this.inputLengthOne = input
     }
   }
 

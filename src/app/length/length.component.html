@@ -63,9 +63,6 @@
             <div class="form-group col-md-5">
               <select id="unitInput" class="form-control" name="selectLengthOne" [(ngModel)]="selectLengthOne" (change)="onLengthOneSelection()">
                 <option *ngFor="let length of lengths" [ngValue]="length.unit">{{length.unit}}</option>
-                <option>m</option>
-                <option>cm</option>
-                <option>ft</option>
               </select>
             </div>
             <div class="form-group col-md-7">
@@ -77,9 +74,6 @@
             <div class="form-group col-md-5">
               <select id="unitOutput" class="form-control" name="selectLengthTwo" [(ngModel)]="selectLengthTwo" (change)="onLengthTwoSelection()">
                 <option *ngFor="let length of lengths" [ngValue]="length.unit">{{length.unit}}</option>
-                <option>m</option>
-                <option>cm</option>
-                <option>ft</option>
               </select>
             </div>
             <div class="form-group col-md-7">
