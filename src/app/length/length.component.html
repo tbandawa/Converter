@@ -88,11 +88,17 @@
                 This is a primary alert—check it out!
             </div>
             <div class="form-row mt-3">
-                <div class="form-group col-md-8">
-                    <input type="number" class="form-control" #input maxlength="10" formControlName="mmValue" placeholder="mm Value">
+                <div class="form-group col-md-7">
+                    <input type="number" class="form-control" #input maxlength="10" formControlName="mmValue" placeholder="mm Value" [ngClass]="{ 'is-invalid': submitted && f.mmValue.errors }">
+                    <div *ngIf="submitted && f.mmValue.errors" class="invalid-feedback">
+                        <div *ngIf="f.mmValue.errors.required">required</div>
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" #input maxlength="10" formControlName="unitValue" placeholder="Unit">
+                <div class="form-group col-md-5">
+                    <input type="text" class="form-control" #input maxlength="10" formControlName="unitValue" placeholder="Unit" [ngClass]="{ 'is-invalid': submitted && f.unitValue.errors }">
+                    <div *ngIf="submitted && f.unitValue.errors" class="invalid-feedback">
+                        <div *ngIf="f.unitValue.errors.required">required</div>
+                    </div>
                 </div>
             </div>
             <div class="form-row">

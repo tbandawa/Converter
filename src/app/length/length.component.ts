@@ -15,6 +15,7 @@ export class LengthComponent implements OnInit {
     {value: 0.03937008, unit: 'in'}
   ];
 
+  submitted = false
   addForm: FormGroup
   selectLengthOne: string
   inputLengthOne: number
@@ -28,6 +29,10 @@ export class LengthComponent implements OnInit {
       mmValue: [null, Validators.required],
       unitValue: [null, Validators.required]
     });
+  }
+
+  get f() { 
+    return this.addForm.controls 
   }
 
   onLengthOneSelection() {
@@ -61,9 +66,9 @@ export class LengthComponent implements OnInit {
   }
 
   submit() {
-    if (!this.addForm.valid) {
-      return;
-    }
+    this.submitted = true;
+    if (this.addForm.invalid)
+      return
     var mm = this.addForm.value.mmValue
     var unit = this.addForm.value.unitValue
     this.lengths.push({value: mm, unit: unit})
