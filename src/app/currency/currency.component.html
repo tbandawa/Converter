@@ -20,7 +20,7 @@
         <div class="form-row mt-3">
           <div class="form-group col-md-5">
             <select class="form-control" name="selectCurrencyTwo" [(ngModel)]="selectCurrencyTwo" (change)="onCurrencyTwoSelection()">
-              <option *ngFor="let currency of currencies" [ngValue]="currency.type" [selected]="currency.type == 'USD' ? true : null">{{currency.type}}</option>
+              <option *ngFor="let currency of currencies" [ngValue]="currency.type">{{currency.type}}</option>
             </select>
           </div>
           <div class="form-group col-md-7">

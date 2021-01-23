@@ -46,7 +46,7 @@ export class CurrencyComponent  {
     if(this.inputCurrencyOne != null && this.selectCurrencyOne != null && this.selectCurrencyTwo != null) {
       var inputCurrency = this.rate.rates[this.selectCurrencyOne]
       var outputCurrency = this.rate.rates[this.selectCurrencyTwo]
-      this.inputCurrencyTwo = this.convertRates(inputCurrency, outputCurrency, this.inputCurrencyOne)
+      this.inputCurrencyTwo = Number(this.convertRates(inputCurrency, outputCurrency, this.inputCurrencyOne).toFixed(2)) 
     }
   }
 
@@ -54,7 +54,7 @@ export class CurrencyComponent  {
     if(this.inputCurrencyTwo != null && this.selectCurrencyOne != null && this.selectCurrencyTwo != null) {
       var inputCurrency = this.rate.rates[this.selectCurrencyOne]
       var outputCurrency = this.rate.rates[this.selectCurrencyTwo]
-      this.inputCurrencyOne = this.convertRates(outputCurrency, inputCurrency, this.inputCurrencyTwo)
+      this.inputCurrencyOne = Number(this.convertRates(outputCurrency, inputCurrency, this.inputCurrencyTwo).toFixed(2)) 
     }
   }
 

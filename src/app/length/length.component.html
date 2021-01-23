@@ -61,47 +61,49 @@
 
           <div class="form-row">
             <div class="form-group col-md-5">
-              <select id="unitInput" class="form-control">
-                <option>m</option>
-                <option>cm</option>
-                <option>ft</option>
+              <select id="unitInput" class="form-control" name="selectLengthOne" [(ngModel)]="selectLengthOne" (change)="onLengthOneSelection()">
+                <option *ngFor="let length of lengths" [ngValue]="length.unit">{{length.unit}}</option>
               </select>
             </div>
             <div class="form-group col-md-7">
-              <input type="number" class="form-control" id="valueInput">
+              <input type="number" class="form-control" name="inputLengthOne" [(ngModel)]="inputLengthOne" (input)="onLengthOneInput()">
             </div>
           </div>
     
           <div class="form-row mt-3">
             <div class="form-group col-md-5">
-              <select id="unitOutput" class="form-control">
-                <option>m</option>
-                <option>cm</option>
-                <option>ft</option>
+              <select id="unitOutput" class="form-control" name="selectLengthTwo" [(ngModel)]="selectLengthTwo" (change)="onLengthTwoSelection()">
+                <option *ngFor="let length of lengths" [ngValue]="length.unit">{{length.unit}}</option>
               </select>
             </div>
             <div class="form-group col-md-7">
-              <input type="number" class="form-control" id="valueOutput">
+              <input type="number" class="form-control" name="inputLengthTwo" [(ngModel)]="inputLengthTwo" (input)="onLengthTwoInput()">
             </div>
           </div>
     
         </form>
 
-        <form class="mt-3">
+        <form class="mt-3"  [formGroup]="addForm" (submit)="submit()">
             <div class="alert alert-primary small p-1" role="alert">
-                This is a primary alert—check it out!
+                Add new option for conversions
             </div>
             <div class="form-row mt-3">
-                <div class="form-group col-md-8">
-                    <input type="number" class="form-control" id="inputValue" placeholder="Value">
+                <div class="form-group col-md-7">
+                    <input type="number" class="form-control" #input maxlength="10" formControlName="mmValue" placeholder="mm Value" [ngClass]="{ 'is-invalid': submitted && f.mmValue.errors }">
+                    <div *ngIf="submitted && f.mmValue.errors" class="invalid-feedback">
+                        <div *ngIf="f.mmValue.errors.required">required</div>
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" id="inputUnit" placeholder="Unit">
+                <div class="form-group col-md-5">
+                    <input type="text" class="form-control" #input maxlength="10" formControlName="unitValue" placeholder="Unit" [ngClass]="{ 'is-invalid': submitted && f.unitValue.errors }">
+                    <div *ngIf="submitted && f.unitValue.errors" class="invalid-feedback">
+                        <div *ngIf="f.unitValue.errors.required">required</div>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <button type="button" class="btn btn-outline-primary btn-block">Add Unit</button>
+                    <button type="submit" class="btn btn-outline-primary btn-block">Add Unit</button>
                 </div>
             </div>
           </form>
