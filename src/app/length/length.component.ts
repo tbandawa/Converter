@@ -43,7 +43,7 @@ export class LengthComponent implements OnInit {
       var unitOne = this.lengths.filter(l => l.unit === this.selectLengthOne)
       var unitTwo = this.lengths.filter(l => l.unit === this.selectLengthTwo)
       var output = this.convertLength(unitOne[0].value, unitTwo[0].value, this.inputLengthOne)
-      this.inputLengthTwo = Number(output.toFixed(2))
+      this.inputLengthTwo = Number(output.toFixed(3))
     }
   }
 
@@ -52,7 +52,7 @@ export class LengthComponent implements OnInit {
       var unitOne = this.lengths.filter(l => l.unit === this.selectLengthOne)
       var unitTwo = this.lengths.filter(l => l.unit === this.selectLengthTwo)
       var input = this.convertLength(unitTwo[0].value, unitOne[0].value, this.inputLengthTwo)
-      this.inputLengthOne = Number(input.toFixed(2))
+      this.inputLengthOne = Number(input.toFixed(3))
     }
   }
 
